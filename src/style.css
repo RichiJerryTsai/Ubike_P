@@ -1,0 +1,66 @@
+:root {
+  --bg: #f7f9fc;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #d1d5db;
+  --primary: #2563eb;
+  --primary-soft: rgba(37, 99, 235, 0.12);
+  --success: #16a34a;
+  --danger: #dc2626;
+  --shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  --radius: 24px;
+  font-family: "Microsoft JhengHei UI", "Microsoft JhengHei", sans-serif;
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.6;
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+a,
+select,
+input[type="checkbox"],
+[onclick],
+.clickable {
+  cursor: pointer;
+}
+
+button.secondary {
+  min-width: 140px;
+  height: 50px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--text);
+  border-radius: 14px;
+  padding: 0 20px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+button.secondary:hover {
+  background: var(--primary-soft);
+  transform: translateY(-1px);
+}
