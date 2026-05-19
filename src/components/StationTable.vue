@@ -1,4 +1,6 @@
 <script setup>
+import { computed, ref } from 'vue';
+
 defineProps({
   stations: {
     type: Array,
@@ -13,6 +15,22 @@ defineProps({
     required: true,
   },
 });
+
+const sortState = ref(0); // 0: no sort, 1: asc, 2: desc
+const sortIcon = computed(() => {
+  switch (sortState.value) {
+    case 1:
+      return '/Pics/sort-asc.svg';
+    case 2:
+      return '/Pics/sort-desc.svg';
+    default:
+      return '/Pics/sort.svg';
+  }
+});
+
+const changeSort = () => {
+    sortState.value = (sortState.value + 1) % 3;
+};
 
 const formatName = (sna) => sna.replace("YouBike2.0_", "");
 const formatCoord = (lat, lng) => `${lat.toFixed(6)},  ${lng.toFixed(6)}`;
@@ -31,10 +49,10 @@ const openMap = (lat, lng) => {
     <thead>
       <tr>
         <th>項次</th>
-        <th>場站區域
+        <th @click="changeSort">場站區域
           <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
         </th>
-        <th>站名
+        <th @click="changeSort">站名
           <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
         </th>
         <th>地點
