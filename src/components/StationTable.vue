@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref } from "vue";
 // 接收父組件資料
 defineProps({
   stations: {
@@ -21,16 +21,16 @@ const sortState = ref(0); // 0: no sort, 1: asc, 2: desc
 const sortIcon = computed(() => {
   switch (sortState.value) {
     case 1:
-      return '/Pics/sort-asc.svg';
+      return "/Pics/sort-asc.svg";
     case 2:
-      return '/Pics/sort-desc.svg';
+      return "/Pics/sort-desc.svg";
     default:
-      return '/Pics/sort.svg';
+      return "/Pics/sort.svg";
   }
 });
 
 const changeSort = () => {
-    sortState.value = (sortState.value + 1) % 3;
+  sortState.value = (sortState.value + 1) % 3;
 };
 //去掉前綴
 const formatName = (sna) => sna.replace("YouBike2.0_", "");
@@ -42,53 +42,61 @@ const openMap = (lat, lng) => {
 </script>
 
 <template>
-  <div class="results-header">
-    <h2>搜尋結果</h2>
-    <p>{{ totalCount }} 個站點符合</p>
+  <div class="results-header"></div>
+  <div class="results-table-container">
+    <!-- 顯示資料表格，表頭固定，超過高度就用滾動條 -->
+    <div class="results-table-wrapper">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>項次</th>
+            <th>
+              場站區域
+              <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
+            </th>
+            <th>
+              站名
+              <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
+            </th>
+            <th>
+              地點
+              <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
+            </th>
+            <th>
+              坐標位置
+              <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
+            </th>
+            <th>
+              目前車輛數
+              <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
+            </th>
+            <th>
+              目前空位數
+              <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--顯示前50筆資料，以及資料更新時間-->
+          <tr v-for="(station, index) in stations.slice(0, 50)" :key="station.sno" :title="`資料時間：${dataLoadTime}`">
+            <td>{{ index + 1 }}</td>
+            <td>{{ station.sarea }}</td>
+            <td>{{ formatName(station.sna) }}</td>
+            <td>{{ station.ar }}</td>
+            <td class="coord-cell">
+              <button class="location-btn" @click="openMap(station.latitude, station.longitude)"
+                title="在 Google Maps 開啟">
+                <img src="/Pics/location.jpg" alt="定位" />
+              </button>
+              {{ formatCoord(station.latitude, station.longitude) }}
+            </td>
+            <td>{{ station.available_rent_bikes }}</td>
+            <td>{{ station.available_return_bikes }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-
-  <table class="results-table">
-    <thead>
-      <tr>
-        <th>項次</th>
-        <th>場站區域
-          <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
-        </th>
-        <th>站名
-          <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
-        </th>
-        <th>地點
-          <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
-        </th>
-        <th>坐標位置
-          <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
-        </th>
-        <th>目前車輛數
-          <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
-        </th>
-        <th>目前空位數
-          <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <!--顯示前50筆資料，以及資料更新時間-->
-      <tr v-for="(station, index) in stations.slice(0, 50)" :key="station.sno" :title="`資料時間：${dataLoadTime}`">
-        <td>{{ index + 1 }}</td>
-        <td>{{ station.sarea }}</td>
-        <td>{{ formatName(station.sna) }}</td>
-        <td>{{ station.ar }}</td>
-        <td class="coord-cell">
-          <button class="location-btn" @click="openMap(station.latitude, station.longitude)" title="在 Google Maps 開啟">
-            <img src="/Pics/location.jpg" alt="定位" />
-          </button>
-          {{ formatCoord(station.latitude, station.longitude) }}
-        </td>
-        <td>{{ station.available_rent_bikes }}</td>
-        <td>{{ station.available_return_bikes }}</td>
-      </tr>
-    </tbody>
-  </table>
 
   <div class="table-footer">
     <div>資料筆數：{{ totalCount }}</div>
@@ -108,6 +116,25 @@ const openMap = (lat, lng) => {
 
 .results-header h2 {
   margin: 0;
+}
+
+.result-table-container {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* 固定表格表頭 */
+.results-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/* 限制表格高度 */
+.results-table-wrapper {
+  max-height: 700px;
+  overflow-y: auto;
 }
 
 .results-table {

@@ -53,7 +53,7 @@ const emit = defineEmits(['refresh'])
 }
 
 .search-panel label {
-  display: grid;
+  display: flex;
   gap: 8px;
   text-align: left;
   color: var(--text);
