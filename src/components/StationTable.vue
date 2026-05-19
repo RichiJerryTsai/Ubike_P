@@ -31,12 +31,24 @@ const openMap = (lat, lng) => {
     <thead>
       <tr>
         <th>項次</th>
-        <th>場站區域</th>
-        <th>站名</th>
-        <th>地點</th>
-        <th>坐標位置</th>
-        <th>目前車輛數</th>
-        <th>目前空位數</th>
+        <th>場站區域
+          <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
+        </th>
+        <th>站名
+          <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
+        </th>
+        <th>地點
+          <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
+        </th>
+        <th>坐標位置
+          <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
+        </th>
+        <th>目前車輛數
+          <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
+        </th>
+        <th>目前空位數
+          <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -71,7 +83,6 @@ const openMap = (lat, lng) => {
   gap: 12px;
   align-items: baseline;
   margin-bottom: 16px;
-  
 }
 
 .results-header h2 {
@@ -92,13 +103,16 @@ const openMap = (lat, lng) => {
 .results-table td {
   padding: 14px 16px;
   border-bottom: 1px solid #e5e7eb;
-  text-align: left;
+  text-align: center;
 }
 
 .results-table th {
   background: #239bb0;
   color: #ffffff;
   font-weight: 700;
+  text-align: center;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
 }
 
 .results-table tbody tr:nth-child(odd) {
@@ -113,6 +127,14 @@ const openMap = (lat, lng) => {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.sort-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  opacity: 0.6;
+  align-items: center;
 }
 
 .location-btn {
