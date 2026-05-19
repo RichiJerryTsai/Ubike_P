@@ -17,11 +17,7 @@ const emit = defineEmits(['refresh'])
   <div class="search-panel">
     <label>
       <span>站點名稱或地址</span>
-      <input
-        type="search"
-        v-model="query"
-        placeholder="例如：科技大樓、復興南路、捷運"
-      />
+      <input type="search" v-model="query" placeholder="例如：科技大樓、復興南路、捷運" />
     </label>
 
     <label>
@@ -34,15 +30,17 @@ const emit = defineEmits(['refresh'])
       </select>
     </label>
 
-    <button type="button" class="secondary" @click="emit('refresh')">
-      <img src="/Pics/reload.svg" alt="" class="reload-btn-icon" />
-      最新資料
-    </button>
+    <div class="search-actions">
+      <label class="checkbox-field">
+        <input id="show-all" type="checkbox" v-model="showAll" />
+        <span>只顯示有車輛的站點</span>
+      </label>
 
-    <label class="checkbox-field">
-      <input id="show-all" type="checkbox" v-model="showAll" />
-      <span>只顯示有車輛的站點</span>
-    </label>
+      <button type="button" class="secondary" @click="emit('refresh')">
+        <img src="/Pics/reload.svg" alt="" class="reload-btn-icon" />
+        最新資料
+      </button>
+    </div>
   </div>
 </template>
 
@@ -62,9 +60,9 @@ const emit = defineEmits(['refresh'])
   margin: 0;
 }
 
-.search-panel .checkbox-field{
+.search-panel .checkbox-field {
   display: inline-flex;
-  align-items:center;
+  align-items: center;
   gap: 8px;
 }
 
@@ -85,6 +83,13 @@ const emit = defineEmits(['refresh'])
   outline: 2px solid rgba(37, 99, 235, 0.25);
 }
 
+.search-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
 .checkbox-field {
   display: inline-flex;
   align-items: center;
@@ -99,7 +104,7 @@ const emit = defineEmits(['refresh'])
   margin: 0;
 }
 
-.reload-btn-icon{
+.reload-btn-icon {
   width: 12px;
   height: 12px;
   margin-right: 4px;

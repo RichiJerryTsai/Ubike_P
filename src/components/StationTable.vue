@@ -71,6 +71,7 @@ const openMap = (lat, lng) => {
   gap: 12px;
   align-items: baseline;
   margin-bottom: 16px;
+  
 }
 
 .results-header h2 {
@@ -82,6 +83,9 @@ const openMap = (lat, lng) => {
   border-collapse: collapse;
   background: #ffffff;
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+  border-radius: 24px 24px 0 0;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
 }
 
 .results-table th,
@@ -142,8 +146,7 @@ const openMap = (lat, lng) => {
   padding: 0 16px;
   background: #ffffff;
   border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0 0 24px 24px;
+  border-top: 1px solid var(--border);
   color: var(--muted);
 }
 

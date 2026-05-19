@@ -130,6 +130,7 @@ onMounted(() => {
 h1 {
   margin: 0;
   font-size: clamp(2.25rem, 2.5vw, 3rem);
+  text-align: center;
 }
 
 .subtitle {
