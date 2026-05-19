@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue';
-
+// 接收父組件資料
 defineProps({
   stations: {
     type: Array,
@@ -16,6 +16,7 @@ defineProps({
   },
 });
 
+// 排序狀態：0 = 無排序, 1 = 升冪, 2 = 降冪(未完成)
 const sortState = ref(0); // 0: no sort, 1: asc, 2: desc
 const sortIcon = computed(() => {
   switch (sortState.value) {
@@ -31,8 +32,9 @@ const sortIcon = computed(() => {
 const changeSort = () => {
     sortState.value = (sortState.value + 1) % 3;
 };
-
+//去掉前綴
 const formatName = (sna) => sna.replace("YouBike2.0_", "");
+//格式化坐標
 const formatCoord = (lat, lng) => `${lat.toFixed(6)},  ${lng.toFixed(6)}`;
 const openMap = (lat, lng) => {
   window.open(`https://www.google.com/maps?q=${lat},${lng}`, "_blank");
@@ -49,10 +51,10 @@ const openMap = (lat, lng) => {
     <thead>
       <tr>
         <th>項次</th>
-        <th @click="changeSort">場站區域
+        <th>場站區域
           <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
         </th>
-        <th @click="changeSort">站名
+        <th>站名
           <img src="/Pics/sort.svg" alt="排序" class="sort-icon" />
         </th>
         <th>地點
@@ -70,6 +72,7 @@ const openMap = (lat, lng) => {
       </tr>
     </thead>
     <tbody>
+      <!--顯示前50筆資料，以及資料更新時間-->
       <tr v-for="(station, index) in stations.slice(0, 50)" :key="station.sno" :title="`資料時間：${dataLoadTime}`">
         <td>{{ index + 1 }}</td>
         <td>{{ station.sarea }}</td>

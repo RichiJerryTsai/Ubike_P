@@ -12,9 +12,11 @@ const selectedArea = ref('')
 const showAll = ref(false)
 
 const pad2 = (value) => String(value).padStart(2, '0')
+//格式化日期時間，月份要特別注意 + 1
 const formatDate = (date) =>
   `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())} ${pad2(date.getHours())}:${pad2(date.getMinutes())}:${pad2(date.getSeconds())}`
 
+// 從官方 API 載入 YouBike 站點資料
 const loadStations = async () => {
   isLoading.value = true
   try {
@@ -32,11 +34,12 @@ const loadStations = async () => {
     isLoading.value = false
   }
 }
-
+// 找到唯一的行政區名稱並且排序
 const areas = computed(() => {
-  return [...new Set(stations.value.map((s) => s.sarea))].sort()
+  return [...new Set(stations.value.map((s) => s.sarea))].sort((a, b) => a.length - b.length)
 })
 
+// 預設為依照可租借車輛數量排序
 const filteredStations = computed(() => {
   const text = query.value.trim().toLowerCase()
   return stations.value.filter((station) => {
@@ -50,13 +53,14 @@ const filteredStations = computed(() => {
   .sort((a, b) => b.available_rent_bikes - a.available_rent_bikes)
 })
 
+//點擊最新資料後重置搜尋條件並且重新載入資料
 const handleRefresh = () => {
   query.value = ''
   selectedArea.value = ''
   showAll.value = false
   loadStations()
 }
-
+// 載入資料
 onMounted(() => {
   loadStations()
 })
@@ -79,7 +83,7 @@ onMounted(() => {
           <h1>開始查找台灣 YouBike2.0 站點</h1>
           <p class="subtitle">輸入站名、地址或區域，快速查看可用車輛與空位資訊。</p>
         </div>
-
+        <!-- 搜尋條件面板 -->
         <SearchPanel
           v-model:query="query"
           v-model:selectedArea="selectedArea"

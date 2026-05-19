@@ -16,8 +16,8 @@ const emit = defineEmits(['refresh'])
 <template>
   <div class="search-panel">
     <label>
-      <span>站點名稱或地址</span>
-      <input type="search" v-model="query" placeholder="例如：科技大樓、復興南路、捷運" />
+      <span>站名或地點查詢</span>
+      <input type="search" v-model="query" placeholder="例如：科技大樓、復興南路、捷運 OO 站" />
     </label>
 
     <label>
