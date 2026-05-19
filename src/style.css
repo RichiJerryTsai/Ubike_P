@@ -50,17 +50,20 @@ input[type="checkbox"],
 }
 
 button.secondary {
-  min-width: 140px;
-  height: 50px;
+  min-width: 100px;
+  height: 24px;
   border: 1px solid var(--border);
   background: #ffffff;
-  color: var(--text);
-  border-radius: 14px;
-  padding: 0 20px;
+  color: #808080;
+  border-color: #808080;
+  border-radius: 10px;
   transition: transform 0.2s ease, background-color 0.2s ease;
+  font-size: 12px;
 }
 
 button.secondary:hover {
-  background: var(--primary-soft);
+  background:#ffffff;
+  color: #239BB0;
+  border-color: #239BB0;
   transform: translateY(-1px);
 }

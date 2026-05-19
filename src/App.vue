@@ -25,7 +25,7 @@ const loadStations = async () => {
     stations.value = await response.json()
     dataLoadTime.value = formatDate(new Date())
   } catch (error) {
-    console.error('載入 Ubike 資料失敗：', error)
+    console.error('載入 YouBike 資料失敗：', error)
     stations.value = []
     dataLoadTime.value = '載入失敗'
   } finally {

@@ -40,17 +40,13 @@ const openMap = (lat, lng) => {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(station, index) in stations.slice(0, 50)" :key="station.sno">
+      <tr v-for="(station, index) in stations.slice(0, 50)" :key="station.sno" :title="`資料時間：${dataLoadTime}`">
         <td>{{ index + 1 }}</td>
         <td>{{ station.sarea }}</td>
         <td>{{ formatName(station.sna) }}</td>
         <td>{{ station.ar }}</td>
         <td class="coord-cell">
-          <button
-            class="location-btn"
-            @click="openMap(station.latitude, station.longitude)"
-            title="在 Google Maps 開啟"
-          >
+          <button class="location-btn" @click="openMap(station.latitude, station.longitude)" title="在 Google Maps 開啟">
             <img src="/Pics/location.jpg" alt="定位" />
           </button>
           {{ formatCoord(station.latitude, station.longitude) }}
@@ -152,6 +148,7 @@ const openMap = (lat, lng) => {
 }
 
 @media (max-width: 840px) {
+
   .results-header,
   .table-footer {
     flex-direction: column;

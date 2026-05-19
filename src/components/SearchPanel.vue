@@ -100,9 +100,9 @@ const emit = defineEmits(['refresh'])
 }
 
 .reload-btn-icon{
-  width: 25px;
-  height: 25px;
-  margin-right: 8px;
+  width: 12px;
+  height: 12px;
+  margin-right: 4px;
   vertical-align: middle;
 }
 
