@@ -30,7 +30,6 @@ const emit = defineEmits(['refresh'])
       </select>
     </label>
 
-    <div class="search-actions">
       <label class="checkbox-field">
         <input id="show-all" type="checkbox" v-model="showAll" />
         <span>只顯示有車輛的站點</span>
@@ -40,15 +39,14 @@ const emit = defineEmits(['refresh'])
         <img src="/Pics/reload.svg" alt="" class="reload-btn-icon" />
         最新資料
       </button>
-    </div>
   </div>
 </template>
 
 <style scoped>
 .search-panel {
   display: grid;
-  gap: 16px;
-  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+  grid-template-columns: auto auto auto auto;
   align-items: end;
 }
 
@@ -68,26 +66,19 @@ const emit = defineEmits(['refresh'])
 
 .search-panel input,
 .search-panel select {
-  width: 100%;
+  width: 200px;
   height: 50px;
   border: 1px solid var(--border);
-  border-radius: 14px;
   padding: 0 16px;
   background: #ffffff;
   color: var(--text);
   font: inherit;
+  align-items: center;
 }
 
 .search-panel input:focus,
 .search-panel select:focus {
   outline: 2px solid rgba(37, 99, 235, 0.25);
-}
-
-.search-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
 }
 
 .checkbox-field {
